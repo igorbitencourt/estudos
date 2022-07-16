@@ -1,51 +1,48 @@
 import React from "react";
 
-// Mostre os dados da aplicação, como aprensetado no vídeo
-// Não utilize CSS externo, use o style para mudar as cores
-// Se a situação estiver ativa pinte de verde, inativa vermelho
-// Se o gasto for maior que 10000 mostre uma mensagem
-const luana = {
-  cliente: "Luana",
-  idade: 27,
-  compras: [
-    { nome: "Notebook", preco: "R$ 2500" },
-    { nome: "Geladeira", preco: "R$ 3000" },
-    { nome: "Smartphone", preco: "R$ 1500" },
-  ],
-  ativa: true,
-};
-
-const mario = {
-  cliente: "Mario",
-  idade: 31,
-  compras: [
-    { nome: "Notebook", preco: "R$ 2500" },
-    { nome: "Geladeira", preco: "R$ 3000" },
-    { nome: "Smartphone", preco: "R$ 1500" },
-    { nome: "Guitarra", preco: "R$ 3500" },
-  ],
-  ativa: false,
-};
+const produtos = [
+  {
+    id: 1,
+    nome: "Smartphone",
+    preco: "R$ 2000",
+    cores: ["#29d8d5", "#252a34", "#fc3766"],
+  },
+  {
+    id: 2,
+    nome: "Notebook",
+    preco: "R$ 3000",
+    cores: ["#ffd045", "#d4394b", "#f37c59"],
+  },
+  {
+    id: 3,
+    nome: "Tablet",
+    preco: "R$ 1500",
+    cores: ["#365069", "#47c1c8", "#f95786"],
+  },
+];
 
 const App = () => {
-  const dados = mario;
-
-  const total = dados.compras
-    .map((item) => +item.preco.replace("R$ ", ""))
-    .reduce((a, b) => a + b);
+  const dados = produtos.filter(
+    ({ preco }) => +preco.replace("R$ ", "") > 1500
+  );
 
   return (
     <div>
-      <p>Nome: {dados.cliente}</p>
-      <p>Idade: {dados.idade}</p>
-      <p>
-        Situação:{" "}
-        <span style={{ color: dados.ativa ? "green" : "red" }}>
-          {dados.ativa ? "ativa" : "inativa"}
-        </span>
-      </p>
-      <p>Total Gasto: R$ {total}</p>
-      {total > 10000 && <p>você está gastando muito</p>}
+      <section>
+        {dados.map(({ id, nome, preco, cores }) => (
+          <div key={id}>
+            <h1>{nome}</h1>
+            <p>Preço: {preco}</p>
+            <ul>
+              {cores.map((cor) => (
+                <li key={cor} style={{ backgroundColor: cor }}>
+                  {cor}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
     </div>
   );
 };
