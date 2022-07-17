@@ -11,7 +11,7 @@ const Produtos = () => {
     <div>
       <Titulo texto="Produtos" />
       {produtos.map(({ nome, propriedades }) => (
-        <div>
+        <div style={{ border: "1px solid", margin: "1rem", padding: "1rem" }}>
           <h3>{nome}</h3>
           <ul>
             {propriedades.map((i) => (

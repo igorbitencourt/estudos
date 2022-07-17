@@ -4,10 +4,18 @@ import { Home } from "./Home";
 import Produtos from "./Produtos";
 
 const App = () => {
+  let Pagina = Home;
+  const { pathname } = window.location;
+  if (pathname === "/Produtos") {
+    Pagina = Produtos;
+  } else {
+    Pagina = Home;
+  }
+
   return (
     <div>
       <Header />
-      <Produtos />
+      <Pagina />
     </div>
   );
 };
