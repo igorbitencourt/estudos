@@ -1,29 +1,13 @@
 import React from "react";
-import Produto from "./Produto";
+import { GlobalStorage } from "./Api";
+import Produtos from "./Produtos";
 
 const App = () => {
-  const [dados, setDados] = React.useState(null);
-
-  async function handleClick(event) {
-    const response = await fetch(
-      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`
-    );
-    const json = await response.json();
-    setDados(json);
-  }
-
   return (
     <div>
-      <button style={{ margin: ".5rem" }} onClick={handleClick}>
-        notebook
-      </button>
-      <button style={{ margin: ".5rem" }} onClick={handleClick}>
-        smartphone
-      </button>
-      <button style={{ margin: ".5rem" }} onClick={handleClick}>
-        tablet
-      </button>
-      {dados && <Produto dados={dados} />}
+      <GlobalStorage.Provider>
+        <Produtos />
+      </GlobalStorage.Provider>
     </div>
   );
 };
