@@ -1,13 +1,10 @@
 import React from "react";
-import { GlobalStorage } from "./Api";
-import Produtos from "./Produtos";
+import Input from "./Input";
 
 const App = () => {
   return (
     <div>
-      <GlobalStorage.Provider>
-        <Produtos />
-      </GlobalStorage.Provider>
+      <Input />
     </div>
   );
 };
